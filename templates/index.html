@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Diabetes Prediction System</h1>
+    <form method="POST">
+      {% for feature in ['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age'] %}
+        <label for="{{ feature }}">{{ feature }}:</label>
+        <input type="number" step="any" name="{{ feature }}" required>
+      {% endfor %}
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <h2>Result: {{ prediction }}</h2>
+        <p>Probability: {{ probability }}%</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
